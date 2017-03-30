@@ -1,0 +1,73 @@
+<html>
+<head>
+<style>
+	body {
+		font-size: 20px;
+		font-family: Verdana;
+	}
+</style>
+<script
+	src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous">
+</script>
+<script>
+	$(function() {
+
+		var theDay = {
+			month:  5,
+			day:    18,
+			hour:   9,
+			minute: 0,
+			second: 0
+		};
+
+		var right_now = new Date();
+
+		var today = {
+			month:  right_now.getMonth() + 1,
+			day:    right_now.getDate(),
+			hour:   right_now.getHours(),
+			minute: right_now.getMinutes(),
+			second: right_now.getSeconds()
+		};
+
+		var getDayOfTheYear = function(aDate) {
+			var months = [31, 28, 31, 30, 31, 30,
+			              31, 31, 30, 31, 30, 31];
+
+			var count = 0;
+			for (var i = 0; i < aDate.month - 1; i++) {
+				count += months[i];
+			}
+			return count + aDate.day;
+		};
+
+
+		var diffBetweenDates = function(to, from) {
+			return {
+				days: getDayOfTheYear(to) - getDayOfTheYear(from),
+				hours: 0,
+				minutes: 0,
+				seconds: 0
+			};
+		};
+
+		var remaining = diffBetweenDates(theDay, today);
+
+		$('#days').html(remaining.days);
+		$('#hours').html(remaining.hours);
+		$('#minutes').html(remaining.minutes);
+		$('#seconds').html(remaining.seconds);
+	});
+</script>
+</head>
+<body>
+	Quedan
+		<span id="days">    15 </span> días,
+		<span id="hours">   13 </span> horas,
+		<span id="minutes"> 37 </span> minutos y
+		<span id="seconds"> 3  </span> segundos
+	para eso que tú sabes.
+</body>
+</html>
