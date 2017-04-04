@@ -55,10 +55,14 @@ $(function() {
 		};
 
 		var remaining = diffBetweenDates(theDay, today);
-		$('#days').html(remaining.days);
-		$('#hours').html(remaining.hours);
-		$('#minutes').html(remaining.minutes);
-		$('#seconds').html(remaining.seconds);
+		$('.days_left').html(Math.floor(remaining.days / 10));
+		$('.days_right').html(remaining.days % 10);
+		$('.hours_left').html(Math.floor(remaining.hours / 10));
+		$('.hours_right').html(remaining.hours % 10);
+		$('.minutes_left').html(Math.floor(remaining.minutes / 10));
+		$('.minutes_right').html(remaining.minutes % 10);
+		$('.seconds_left').html(Math.floor(remaining.seconds / 10));
+		$('.seconds_right').html(remaining.seconds % 10);
 
 		setTimeout(counter, 1000);
 	}
