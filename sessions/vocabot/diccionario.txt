@@ -1,0 +1,16 @@
+спасибо:
+	gracias
+	oh yeah
+	graciñas
+привет:
+	hola
+	holi
+до свидания:
+	adiós
+	hasta la vista
+	hasta más ver
+пожалуйста:
+	por favor
+друг:
+	amigo
+	amiga
