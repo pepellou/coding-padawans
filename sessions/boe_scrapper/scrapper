@@ -1,0 +1,27 @@
+dates_to_explore=(
+	'2017/05/02'
+	'2017/05/01'
+	'2017/01/01'
+	'2018/05/01'
+	'2005/07/09'
+)
+
+mkdir -p boes
+cd boes
+
+for date in ${dates_to_explore[@]}
+do
+	echo "Obteniendo PDFs del BOE $date..."
+	year=$(echo $date | awk 'BEGIN {FS="/"} {print $1}')
+	month=$(echo $date | awk 'BEGIN {FS="/"} {print $2}')
+	day=$(echo $date | awk 'BEGIN {FS="/"} {print $3}')
+	filename=boe_${year}_${month}_${day}.html
+	curl -s https://www.boe.es/boe/dias/$date/index.php?t=c | iconv -f ISO-8859-1 -t UTF-8 > $filename
+	for pdf in `grep "<a .*href=\".*\.pdf\"" $filename | tail -n +2 | awk 'BEGIN {FS="\""} {print $2}'`
+	do
+		pdfname=$(echo $pdf | awk 'BEGIN {FS="/"} {print $NF}')
+		curl -s https://www.boe.es$pdf > $pdfname
+	done
+done
+
+cd -
