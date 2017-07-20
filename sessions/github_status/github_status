@@ -1,0 +1,2 @@
+curl -s https://status.github.com/api/status.json >> ~/github_status.log
+echo -en "\n" >> ~/github_status.log
